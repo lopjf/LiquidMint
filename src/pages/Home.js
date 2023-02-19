@@ -78,8 +78,6 @@ const Home = ({ accounts, setAccounts }) => {
 			</div>
 		</div>
 
-		{/* 3rd page */}
-
 	</div>
   )
 }

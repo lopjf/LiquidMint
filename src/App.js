@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Home from './pages/Home';
 import Navbar from './NavBar';
+import Footer from './Footer';
 
 function App() {
   const [accounts, setAccounts] = useState([]); // useState is a type of hook. It enables react to render the right elements and components when 'accounts' and 'setAccounts' get updated
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Navbar accounts={accounts} setAccounts={setAccounts}></Navbar>
       <Home accounts={accounts} setAccounts={setAccounts}></Home>
+      <Footer></Footer>
     </div>
   );
 }
