@@ -5,7 +5,10 @@ import liquidSquid from './LiquidSquid.json';	// this enable us to grab the ABI,
 
 const liquidSquidAddress = "0x593E0473ec5321C5622A1F7aB96698586c71E81d";
 
-const buttonPerso = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
+const buttonPerso = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4";
+
+const minAmount = 1;
+const maxAmount = 50;
 
 const Home = ({ accounts, setAccounts }) => {
 	const [mintAmount, setMintAmount] = useState(1);
@@ -33,43 +36,50 @@ const Home = ({ accounts, setAccounts }) => {
 	}
 
 	const handleDecrement = () => {	// this will be run when we click the 'minus' button
-		if (mintAmount <= 1) return;
+		if (mintAmount <= minAmount) return;
 		setMintAmount(mintAmount - 1);
 	};
 
 	const handleIncrement = () => {	// this will be run when we click the 'plus' button
-		if (mintAmount >= 3) return;
+		if (mintAmount >= maxAmount) return;
 		setMintAmount(mintAmount + 1);
 	};
 	
 	return (
 	<div>
-		<div class="bg-gradient-to-r from-indigo-500 min-h-screen">
-			<div class="flex flex-col items-center pt-60 pb-80">
-				<h1 class="text-5xl">TITLETITLE</h1>
-				<div class="mt-40 flex justify-evenly items-center w-1/2">
-					<p class="text-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.</p>
-					<button type="button" class="whitespace-nowrap ml-40 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">MINT NOW</button>
+		{/* 1st page */}
+		<div className="bg-slate-100 min-h-screen">
+			<div className="flex flex-col items-center pt-60 pb-80">
+				<h1 className="text-5xl">TITLETITLE</h1>
+				<div className="mt-40 flex justify-evenly items-center w-1/2">
+					<p className="text-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.</p>
+					<button type="button" className="whitespace-nowrap ml-40 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4">MINT NOW</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="bg-gradient-to-r from-cyan-500 to-blue-500 min-h-screen">
-			<div class="flex flex-col items-center pt-60 pb-80">
-				<h1 class="text-5xl">TITLETITLE</h1>
-				{/* {isConnected ? (
-				<Box margin="0 15px">Connected</Box>
-				) : ( */}
-				<p class="pt-20 text-2xl items-center w-1/2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.</p>
-				<div class="mt-40 flex justify-evenly items-center w-1/4">
-					<button type="button" class= {buttonPerso} >-</button>
-					<button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">display</button>
-					<button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">+</button>
-				</div>
-				<button type="button" class="whitespace-nowrap mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">MINT NOW</button>
-				{/* )} */}
+		{/* 2nd page */}
+		<div className="bg-gradient-to-r  min-h-screen">
+			<div className="flex flex-col items-center text-center pt-40">
+				<h1 className="text-5xl">TITLETITLE</h1>
+				{isConnected ? (
+					<>
+					<p className="pt-20 text-2xl w-1/2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eaque suscipit minima ipsum laborum autem dolores illo ex obcaecati aliquid!</p>
+					<div className="mt-40 flex justify-evenly items-center w-1/4">
+						<button type="button" onClick={handleDecrement} className= {buttonPerso} >-</button>
+						<input type="number" value={mintAmount} className="text-center w-10 mx-2" />
+						<button type="button" onClick={handleIncrement} className= {buttonPerso}>+</button>
+					</div>
+					<button type="button" className="whitespace-nowrap mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-10 py-4">MINT NOW</button>
+					</>
+				) : (
+					<p className="pt-60 text-2xl w-1/2 text-red-500">Please connect your wallet to continue.</p>
+				)}
 			</div>
 		</div>
+
+		{/* 3rd page */}
+
 	</div>
   )
 }
